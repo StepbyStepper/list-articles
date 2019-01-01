@@ -17,6 +17,7 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
+
       const myNews = [
         {
           id: 1,
@@ -56,6 +57,7 @@
           return (
             <div className="news">
               {newsTemplate}
+              <strong>Всего новостей: {this.props.data.length}</strong>
             </div>
           )
         }
