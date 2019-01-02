@@ -49,7 +49,7 @@
       const myNews = [
         {
           id: 1,
-          author: 'Саша Печкин',
+          author: 'Саша Печкин'
           text: 'В четверг, четвертого числа...'
         },
         {
@@ -113,6 +113,13 @@
 
       News.propTypes = {
         data: PropTypes.array.isRequired
+      }
+
+      Article.propTypes = {
+        data: PropTypes.shape({
+          author: PropTypes.string.isRequired,
+          text: PropTypes.string.isRequired
+        })
       }
 
       const App = () => {
