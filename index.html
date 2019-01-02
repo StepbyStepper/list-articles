@@ -90,7 +90,7 @@
               <p className='news__text'>{text}</p>
               {
                 /*если не visible, то показывай*/
-                !visible && <a href="#" className='news__readmore'>Подробнее</a>
+                !visible && <a onClick={this.handleReadMoreClick} href="#" className='news__readmore'>Подробнее</a>
               }
               {
                 /*если visible, то показывай*/
