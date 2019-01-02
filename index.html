@@ -77,6 +77,10 @@
         state = {
           visible: false,
         }
+        handleReadMoreClick = (e) => {
+          e.preventDefault()
+          this.setState({ visible: true })
+        }
         render() {
           const { author, text, bigText } = this.props.data
           const { visible } = this.state // вытащили visible из this.state
