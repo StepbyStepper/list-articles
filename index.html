@@ -146,9 +146,17 @@
       }
 
     class TestInput extends React.Component {
-      redner() {
+      state = {
+        myValue: ''
+      }
+
+      onChangeHandler = (e) => {
+        this.setState({ myValue: e.target.value })
+      }
+
+      render() {
         return (
-          <input className='test-input' value='введите значение' />
+          <input className='test-input' onChange={this.onChangeHandler} value={this.state.myValue} placeholder='введите значение' />
         )
       }
     }
