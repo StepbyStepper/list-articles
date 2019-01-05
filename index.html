@@ -36,10 +36,16 @@
         text-decoration: underline;
         color: #007DDC;
       }
+
       .news__count {
         margin: 10px 0 0 0;
         display: block;
       }
+
+      .test-input {
+        margin: 0 5px 5px 0;
+      }
+
     </style>
   </head>
   <body>
@@ -154,9 +160,20 @@
         this.setState({ myValue: e.target.value })
       }
 
+      onClickHandler = (e) => {
+        alert(this.state.myValue)
+      }
+
       render() {
         return (
-          <input className='test-input' onChange={this.onChangeHandler} value={this.state.myValue} placeholder='введите значение' />
+          <React.Fragment>
+            <input className='test-input'
+                   onChange={this.onChangeHandler}
+                   value={this.state.myValue}
+                   placeholder='введите значение'
+            />
+            <button onClick={this.onClickHandler}>Показать alert</button>
+          </React.Fragment>
         )
       }
     }
