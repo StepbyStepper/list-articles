@@ -157,6 +157,11 @@
         this.input = React.createRef()
       }
 
+      componentDidMount() {
+        // ставим фокус на input
+        this.input.current.focus()
+      }
+
       onClickHandler = (e) => {
         alert(this.input.current.value)
       }
