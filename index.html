@@ -111,10 +111,12 @@
         state = {
           visible: false,
         }
+
         handleReadMoreClick = (e) => {
           e.preventDefault()
           this.setState({ visible: true })
         }
+
         render() {
           const { author, text, bigText } = this.props.data
           const { visible } = this.state // вытащили visible из this.state
@@ -173,6 +175,7 @@
 
       Article.propTypes = {
         data: PropTypes.shape({
+          id: PropTypes.number.isRequired, // добавили id, это число, обязательно
           author: PropTypes.string.isRequired,
           text: PropTypes.string.isRequired,
           bigText: PropTypes.string.isRequired
@@ -183,13 +186,18 @@
         state = {
           name: '',
           text: '',
+          bigText: '', // добавлен bigText
           agree: false
         }
         onClickHandler = (e) => {
           e.preventDefault()
-          const { name, text } = this.state
-          // alert(name + '\n' + text)
-          this.props.onAddNews({ name, text })
+          const { name, text, bigText } = this.state // вытащили так же и bigText
+          this.props.onAddNews({
+            id: +new Date(), // в id сохраняется количество миллисекунд прошедших с 1 января 1970 года
+            author: name, // name сохраняем в поле author
+            text,
+            bigText
+          })
         }
 
         handleChange = (e) => {
@@ -210,7 +218,7 @@
         }
 
         render() {
-          const { name, text, agree } = this.state
+          const { name, text, bigText, agree } = this.state
 
           return (
             <form className='add'>
@@ -228,6 +236,14 @@
                 className='add__text'
                 placeholder='Текст новости'
                 value={text}
+              ></textarea>
+              {/* добавили bigText */}
+              <textarea
+                id = 'bigText'
+                onChange={this.handleChange}
+                className='add__text'
+                placeholder='Текст новости подробно'
+                value={bigText}
               ></textarea>
               <label className='add__checkrule'>
                 <input type='checkbox' onChange={this.handleCheckboxChange}/> Я согласен с правилами
