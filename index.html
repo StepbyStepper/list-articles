@@ -247,12 +247,15 @@
           news: myNews,
         }
         
+        handleAddNews = () => {
+          console.log('Я вызван из Add, но имею доступ к this.state у App! ', this.state)
+        }
+
         render() {
           return (
             <React.Fragment>
-              <Add /> {/* добавили вывод компонента */}
+              <Add onAddNews={this.handleAddNews} />
               <h3>Новости</h3>
-              {/* считали новости из this.state */}
               <News data={this.state.news} />
             </React.Fragment>
           )
