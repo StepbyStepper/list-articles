@@ -46,6 +46,34 @@
         margin: 0 5px 5px 0;
       }
 
+      .add {
+        margin: 0 5px 5px 0;
+        width: 210px;
+        border: 1px dashed rgba(0, 89, 181, 0.82);
+        padding: 5px;
+      }
+      .add__author, .add__text, .add__btn, .add__checkrule {
+        display: block;
+        margin: 0 0 5px 0;
+        padding: 5px;
+        width: 94%;
+        border: 1px solid rgba(0, 89, 181, 0.82);
+      }
+      .add__checkrule {
+        border: none;
+        font-size: 12px;
+      }
+      .add__btn {
+        box-sizing: content-box;
+        color: #FFF;
+        text-transform: uppercase;
+        background: #007DDC;
+      }
+      .add__btn:disabled {
+        background: #CCC;
+        color: #999;
+      }
+
     </style>
   </head>
   <body>
@@ -151,32 +179,32 @@
         })
       }
 
-    class TestInput extends React.Component {
-      constructor(props) {
-        super(props)
-        this.input = React.createRef()
-      }
-
-      componentDidMount() {
-        // ставим фокус на input
-        this.input.current.focus()
-      }
-
+    class Add extends React.Component {
       onClickHandler = (e) => {
-        alert(this.input.current.value)
+        e.preventDefault()
       }
 
       render() {
         return (
-          <React.Fragment>
-            <input className='test-input'
-                   onChange={this.onChangeHandler}
-                   dafaultValue=''
-                   placeholder='введите значение'
-                   ref={this.input}
+          <form className='add'>
+            <input
+              type='text'
+              className='add_author'
+              placeholder='Ваше имя'
             />
-            <button onClick={this.onClickHandler}>Показать alert</button>
-          </React.Fragment>
+            <textarea
+              className='add__text'
+              placeholder='Текст новости'
+            ></textarea>
+            <label className='add__chechrule'>
+              <input type='checkbox' /> Я согласен с правилами
+            </label>
+            <button
+              className='add__btn'
+              onClick={this.onClickHandler}>
+              Показать alert
+            </button>
+          </form>
         )
       }
     }
@@ -185,7 +213,7 @@
         return (
           <React.Fragment>
           <h3>Новости</h3>
-            <TestInput /> {/* добавили вывод компонента */}
+            <Add /> {/* добавили вывод компонента */}
             <News data={myNews}/>
           </React.Fragment>
         )
