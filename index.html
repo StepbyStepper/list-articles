@@ -180,23 +180,40 @@
       }
 
     class Add extends React.Component {
+      state = {
+        name: '',
+        text: ''
+      }
       onClickHandler = (e) => {
         e.preventDefault()
       }
+      handleNameChange = (e) => {
+        this.setState({ name: e.currentTarget.value })
+      }
+
+      handleTextChange = (e) => {
+        this.setState({ text: e.currentTarget.value })
+      }
 
       render() {
+        const { name, text } = this.state
+
         return (
           <form className='add'>
             <input
+              onChange={this.handleNameChange}
               type='text'
               className='add_author'
               placeholder='Ваше имя'
+              value={name}
             />
             <textarea
+              onChange={this.handleTextChange}
               className='add__text'
               placeholder='Текст новости'
+              value={text}
             ></textarea>
-            <label className='add__chechrule'>
+            <label className='add__checkrule'>
               <input type='checkbox' /> Я согласен с правилами
             </label>
             <button
