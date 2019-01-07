@@ -191,12 +191,9 @@
         alert(name + '\n' + text)
       }
 
-      handleNameChange = (e) => {
-        this.setState({ name: e.currentTarget.value })
-      }
-
-      handleTextChange = (e) => {
-        this.setState({ text: e.currentTarget.value })
+      handleChange = (e) => {
+        const { id, value } = e.currentTarget
+        this.setState({ [id]: e.currentTarget.value })
       }
 
       handleCheckboxChange = (e) => {
@@ -217,14 +214,16 @@
         return (
           <form className='add'>
             <input
+              id='name'
               type='text'
-              onChange={this.handleNameChange}
+              onChange={this.handleChange}
               className='add__author'
               placeholder='Ваше имя'
               value={name}
             />
             <textarea
-              onChange={this.handleTextChange}
+              id='text'
+              onChange={this.handleChange}
               className='add__text'
               placeholder='Текст новости'
               value={text}
