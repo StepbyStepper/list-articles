@@ -252,8 +252,16 @@
           news: myNews,
         }
         
-        handleAddNews = () => {
-          console.log('Я вызван из Add, но имею доступ к this.state у App! ', this.state)
+        handleAddNews = (data) => {
+          // сначала формируем массив,
+          // на основе того, что уже было в новостях
+          // и кладем это все в новый массив +
+          // новую новость кладем в начало массива
+
+          const nextNews = [data, ...this.state.news]
+
+          // затем обновляем новый массив новостей в this.state.news
+          this.setState({ news: nextNews})
         }
 
         render() {
